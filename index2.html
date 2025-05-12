@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    .klik {
+      font-size: 2rem;
+      color: #ff69b4;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+      text-shadow: 0 0 10px #ff69b4;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+    .confetti, .falling-heart {
+      position: fixed;
+      pointer-events: none;
+      animation: fall linear;
+      z-index: 0;
+    }
+    .confetti {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .falling-heart {
+      width: 32px;
+      height: 32px;
+      background: url('serce.png') no-repeat center;
+      background-size: contain;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-10vh); opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="klik" onclick="window.location.href='index3.html'">ALE NA PEWNO?</div>
+  <script>
+    const colors = ['#ff4da6', '#ffd700', '#87cefa', '#ffffff'];
+    function createConfetti() {
+      const dot = document.createElement('div');
+      dot.classList.add('confetti');
+      dot.style.left = Math.random() * 100 + 'vw';
+      dot.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      dot.style.animationDuration = (2 + Math.random() * 2) + 's';
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 5000);
+    }
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('falling-heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createConfetti, 200);
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
+
